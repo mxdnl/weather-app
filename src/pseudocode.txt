@@ -1,0 +1,5 @@
+Upon page loading
+    1. generate skeleton of the page
+    2. fetch weather data
+    3. display weather data
+
