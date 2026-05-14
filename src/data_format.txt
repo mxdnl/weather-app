@@ -1,4 +1,4 @@
-# full data format
+# full data format (temp in fahrenheit)
 
 {
   queryCost: 1,
