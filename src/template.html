@@ -14,26 +14,67 @@
 <body>
     <main>
         <div class="topbar">
-            <input type="text" placeholder="Search for cities">
+            <input type="text" placeholder="Search for cities" id="search-city">
         </div>
         
         <div class="main-info-div">
             <div class="info-summary-div">
-                <span class="location-and-temp-div">
-                    <span class="region">
-                        <p class="location city">Manila</p>
-                        <p class="location country">Philippines</p>
-                    </span>
-                    <p class="temperature">31&deg</p>
+                <span class="location-div">
+                    <p class="location">Manila, Philippines</p>
+                    <br>
+                    <p class="chance-of-precip">Chance of Precipitation: 0%</p>
+                    <br>
                 </span>
+                <p class="temperature">31&degC</p>
+                <img src="assets/sun.png" alt="cloud">
             </div>
 
             <div class="hourly-forecast-div card">
+                <p>TODAY'S FORECAST</p>
+                <div class="hourly-forecast">
+                    <span class="hour">
+                        <p class="time">6:00 AM</p>
+                        <img src="assets/rain.png" alt="">
+                        <p class="temp">25&degC</p>
+                    </span>
 
+                    <span class="hour">
+                        <p class="time">9:00 AM</p>
+                        <img src="assets/cloud.png" alt="">
+                        <p class="temp">29&degC</p>
+                    </span>
+
+                    <span class="hour">
+                        <p class="time">12:00 PM</p>
+                        <img src="assets/sun.png" alt="">
+                        <p class="temp">32&degC</p>
+                    </span>
+
+                    <span class="hour">
+                        <p class="time">3:00 PM</p>
+                        <img src="assets/sun.png" alt="">
+                        <p class="temp">28&degC</p>
+                    </span>
+
+                    <span class="hour">
+                        <p class="time">6:00 PM</p>
+                        <img src="assets/drizzle.png" alt="">
+                        <p class="temp">28&degC</p>
+                    </span>
+
+                    <span class="hour last-hour">
+                        <p class="time">9:00 PM</p>
+                        <img src="assets/cloud.png" alt="">
+                        <p class="temp">26&degC</p>
+                    </span>
+                </div>
             </div>
 
-            <div class="weather-conditions-div card">
+            <div class="air-conditions-div card">
+                <p>AIR CONDITIONS</p>
+                <div class="conditions-info">
 
+                </div>
             </div>
         </div>
     </main>

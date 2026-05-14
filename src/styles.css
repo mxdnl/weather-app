@@ -1,3 +1,5 @@
+/**/
+
 * {
     box-sizing: border-box;
 }
@@ -28,6 +30,8 @@ main {
     width: 65%; 
 }
 
+/**/
+
 .topbar {
     height: 5%;
 }
@@ -53,6 +57,8 @@ main {
 .card {
     background-color: var(--card-dark);
     border-radius: 15px;
+
+    padding: 1.3rem;
 }
 
 .daily-forecast-div {
@@ -60,16 +66,71 @@ main {
     padding: 0.8rem;
 }
 
-.city {
+.location {
     font-size: 2.5rem;
 }
 
-.location-and-temp-div p {
+.info-summary-div p {
     margin: 0;
+    font-weight: 500;
+    display: inline;
 }
 
-
+.info-summary-div {
+    position: relative;
+    padding: 1rem;
+}
 
 .temperature {
     font-size: 3rem;
+
+    position: absolute;
+    bottom: 0;
 }
+
+.info-summary-div img {
+    position: absolute;
+    right: 0;
+
+    height: 7rem;
+    width: 7rem;
+} 
+
+.hourly-forecast-div p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.hourly-forecast-div > p {
+    margin-bottom: 1rem;
+}
+
+.hourly-forecast {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.hourly-forecast img {
+    height: 4rem;
+    width: 4rem;
+}
+
+.temp {
+    font-size: 1.3rem;
+}
+
+.hour {
+    text-align: center;
+    flex: 1;
+    border-right: 1px solid var(--font-color-dark);
+}
+
+.last-hour {
+    border: none;
+}
+
+.air-conditions-div p {
+    margin: 0;
+    font-weight: 500;
+}
+
