@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/temperature.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <span class="search">
+        <input type="text" placeholder="Search for cities" id="search-bar">
+    </span>
+
+    <main>
+        <div class="main-info section">
+            <span class="main-info-text">
+                <span>
+                    <p class="location">Manila, Philippines</p>
+                </span>
+            </span>
+
+            <span class="icon-container">
+                <p class="today-temp">31&degC</p>
+                <img src="assets/cloud.png" alt="" class="today-icon">
+            </span>
+        </div>
+
+        <div class="hourly-forecast section">
+            <p>TODAY'S FORECAST</p>
+            
+            <div class="hour-card-container">
+                <span class="hour-card">
+                    <p class="time">6:00 AM</p>
+                    <img src="assets/cloud.png" alt="" class="today-icon">
+                    <p class="hourly-temp">25&degC</p>
+                </span>
+
+                <span class="hour-card">
+                    <p class="time">9:00 AM</p>
+                    <img src="assets/sun.png" alt="" class="today-icon">
+                    <p class="hourly-temp">25&degC</p>
+                </span>
+
+                <span class="hour-card">
+                    <p class="time">12:00 PM</p>
+                    <img src="assets/sun.png" alt="" class="today-icon">
+                    <p class="hourly-temp">25&degC</p>
+                </span>
+
+                <span class="hour-card">
+                    <p class="time">3:00 PM</p>
+                    <img src="assets/thunder-rain.png" alt="" class="today-icon">
+                    <p class="hourly-temp">25&degC</p>
+                </span>
+
+                <span class="hour-card">
+                    <p class="time">6:00 PM</p>
+                    <img src="assets/rain.png" alt="" class="today-icon">
+                    <p class="hourly-temp">25&degC</p>
+                </span>
+
+                <span class="hour-card">
+                    <p class="time">9:00 PM</p>
+                    <img src="assets/cloud.png" alt="" class="today-icon">
+                    <p class="hourly-temp">25&degC</p>
+                </span>
+            </div>
+
+        </div>
+
+        <div class="air-conditions section">
+            <p>AIR CONDITIONS</p>
+
+            <div class="conditions-card-container">
+                <span class="conditions-card">
+                    <img src="assets/temperature.png" alt="">
+                    <div class="conditions-card-text">
+                        <p>Feels like:</p>
+                        <div></span><p class="feels-like conditions-value">32&degC</p></div>
+                    </div>
+                </span>
+
+                <span class="conditions-card">
+                    <img src="assets/humidity.png" alt="">
+                    <div class="conditions-card-text">
+                        <p>Humidity:</p>
+                        <div><p class="humidity conditions-value">76.9%</p></div>
+                    </div>
+                </span>
+
+                <span class="conditions-card">
+                    <img src="assets/uv-index.png" alt="">
+                    <div class="conditions-card-text">
+                        <p>UV Index:</p>
+                        <div><p class="uv-index conditions-value">8</p></div>
+                    </div>
+                </span>
+
+                <span class="conditions-card">
+                    <img src="assets/temperature.png" alt="">
+                    <div class="conditions-card-text">
+                        <p>Chance of rain:</p>
+                        <div><p class="chance-of-rain conditions-value">77%</p></div>
+                    </div>
+                </span>
+            </div>
+        </div>
+
+        <div class="weekly-forecast section">
+            <p>WEEKLY FORECAST</p>
+            <div class="daily-forecast-card-container">
+                
+            </div>
+        </div>
+    </main>
+
+    <div class="theme-footer">
+
+    </div>
+</body>
+</html>
