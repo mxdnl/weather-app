@@ -1,7 +1,68 @@
-export async function loadData(weather, tempUnit) {
+export async function updateData(getWeatherData, location, tempUnit) {
+    const searchBar = document.getElementById('search-bar')
+    const locationText = document.querySelector('.location')
+    const todayTemp = document.querySelector('.today-temp')
+    const todayIcon = document.querySelector('.today-icon')
+    const hourlyTemps = document.querySelectorAll('.hourly-temp')
+    const hourlyIcons = document.querySelectorAll('.hour-card .today-icon')
+    const feelsLike = document.querySelector('.feels-like')
+    const humidity = document.querySelector('.humidity')
+    const uvIndex = document.querySelector('.uv-index')
+    const chanceOfRain = document.querySelector('.chance-of-rain')
+    const dailyTemps = document.querySelectorAll('.daily-temp')
+    const dailyIcons = document.querySelectorAll('.daily-forecast-card img') 
+
+    const weatherData = await getWeatherData(location)
+
+    // Update location
+    console.log(weatherData.main.region)
+    locationText.textContent = weatherData.main.region
+
+    // Update today's temperature
+    console.log(weatherData.main.temp)
+    todayTemp.textContent = `${weatherData.main.temp}\u00B0${tempUnit}`
+
+    // Update today's icon
+    todayIcon.src = `assets/icons/${weatherData.main.icon}.png`
+
+    // Update hourly temperatures and icons
+    hourlyTemps.forEach((temp, index) => {
+        temp.textContent = `${weatherData.hourlyForecast[index].temp}\u00B0${tempUnit}`
+    })
+
+    hourlyIcons.forEach((icon, index) => {
+        icon.src = `assets/icons/${weatherData.hourlyForecast[index].icon}.png`
+    })
+
+    // Update feels like
+    feelsLike.textContent = `${weatherData.airConditions.feelsLike}\u00B0${tempUnit}`
+
+    // Update humidity
+    humidity.textContent = `${weatherData.airConditions.humidity}%`
+
+    // Update uv index
+    uvIndex.textContent = weatherData.airConditions.uvIndex
+
+    // Update chance of rain
+    chanceOfRain.textContent = `${weatherData.airConditions.chanceOfRain}%`
+
+    // Update daily temperatures and icons
+    dailyTemps.forEach((temp, index) => {
+        temp.textContent = `${weatherData.weeklyForecast[index].temp}\u00B0${tempUnit}`
+    })
+
+    dailyIcons.forEach((icon, index) => {
+        icon.src = `assets/icons/${weatherData.weeklyForecast[index].icon}.png`
+    })
+}
+
+export async function loadPage(weather, location, tempUnit) {
     const body = document.querySelector('body')
 
-    const data = await weather()
+    console.log(location)
+    console.log('fetching data...')
+    const weatherData = await weather(location)
+    console.log('Data fetched')
 
     body.innerHTML = `
     <span class="search">
@@ -12,13 +73,13 @@ export async function loadData(weather, tempUnit) {
         <div class="main-info section">
             <span class="main-info-text">
                 <span>
-                    <p class="location">Manila, Philippines</p>
+                    <p class="location">${location}</p>
                 </span>
             </span>
 
             <span class="icon-container">
-                <p class="today-temp">31&degC</p>
-                <img src="assets/cloud.png" alt="" class="today-icon">
+                <p class="today-temp">${weatherData.main.temp}&deg${tempUnit}</p>
+                <img src="assets/icons/${weatherData.main.icon}.png" alt="" class="today-icon">
             </span>
         </div>
 
@@ -28,38 +89,38 @@ export async function loadData(weather, tempUnit) {
             <div class="hour-card-container">
                 <span class="hour-card">
                     <p class="time">6:00 AM</p>
-                    <img src="assets/cloud.png" alt="" class="today-icon">
-                    <p class="hourly-temp">25&degC</p>
+                    <img src="assets/icons/${weatherData.hourlyForecast[0].icon}.png" alt="" class="today-icon">
+                    <p class="hourly-temp">${weatherData.hourlyForecast[0].temp}&deg${tempUnit}</p>
                 </span>
 
                 <span class="hour-card">
                     <p class="time">9:00 AM</p>
-                    <img src="assets/sun.png" alt="" class="today-icon">
-                    <p class="hourly-temp">25&degC</p>
+                    <img src="assets/icons/${weatherData.hourlyForecast[1].icon}.png" alt="" class="today-icon">
+                    <p class="hourly-temp">${weatherData.hourlyForecast[1].temp}&deg${tempUnit}</p>
                 </span>
 
                 <span class="hour-card">
                     <p class="time">12:00 PM</p>
-                    <img src="assets/sun.png" alt="" class="today-icon">
-                    <p class="hourly-temp">25&degC</p>
+                    <img src="assets/icons/${weatherData.hourlyForecast[2].icon}.png" alt="" class="today-icon">
+                    <p class="hourly-temp">${weatherData.hourlyForecast[2].temp}&deg${tempUnit}</p>
                 </span>
 
                 <span class="hour-card">
                     <p class="time">3:00 PM</p>
-                    <img src="assets/thunder-rain.png" alt="" class="today-icon">
-                    <p class="hourly-temp">25&degC</p>
+                    <img src="assets/icons/${weatherData.hourlyForecast[3].icon}.png" alt="" class="today-icon">
+                    <p class="hourly-temp">${weatherData.hourlyForecast[3].temp}&deg${tempUnit}</p>
                 </span>
 
                 <span class="hour-card">
                     <p class="time">6:00 PM</p>
-                    <img src="assets/rain.png" alt="" class="today-icon">
-                    <p class="hourly-temp">25&degC</p>
+                    <img src="assets/icons/${weatherData.hourlyForecast[4].icon}.png" alt="" class="today-icon">
+                    <p class="hourly-temp">${weatherData.hourlyForecast[4].temp}&deg${tempUnit}</p>
                 </span>
 
                 <span class="hour-card">
                     <p class="time">9:00 PM</p>
-                    <img src="assets/cloud.png" alt="" class="today-icon">
-                    <p class="hourly-temp">25&degC</p>
+                    <img src="assets/icons/${weatherData.hourlyForecast[5].icon}.png" alt="" class="today-icon">
+                    <p class="hourly-temp">${weatherData.hourlyForecast[5].temp}&deg${tempUnit}</p>
                 </span>
             </div>
 
@@ -73,7 +134,7 @@ export async function loadData(weather, tempUnit) {
                     <img src="assets/temperature.png" alt="">
                     <div class="conditions-card-text">
                         <p>Feels like:</p>
-                        <div></span><p class="feels-like conditions-value">32&degC</p></div>
+                        <div></span><p class="feels-like conditions-value">${weatherData.airConditions.feelsLike}&deg${tempUnit}</p></div>
                     </div>
                 </span>
 
@@ -81,7 +142,7 @@ export async function loadData(weather, tempUnit) {
                     <img src="assets/humidity.png" alt="">
                     <div class="conditions-card-text">
                         <p>Humidity:</p>
-                        <div><p class="humidity conditions-value">76.9%</p></div>
+                        <div><p class="humidity conditions-value">${weatherData.airConditions.humidity}%</p></div>
                     </div>
                 </span>
 
@@ -89,15 +150,15 @@ export async function loadData(weather, tempUnit) {
                     <img src="assets/uv-index.png" alt="">
                     <div class="conditions-card-text">
                         <p>UV Index:</p>
-                        <div><p class="uv-index conditions-value">8</p></div>
+                        <div><p class="uv-index conditions-value">${weatherData.airConditions.uvIndex}</p></div>
                     </div>
                 </span>
 
                 <span class="conditions-card">
-                    <img src="assets/temperature.png" alt="">
+                    <img src="assets/humidity.png" alt="">
                     <div class="conditions-card-text">
                         <p>Chance of rain:</p>
-                        <div><p class="chance-of-rain conditions-value">77%</p></div>
+                        <div><p class="chance-of-rain conditions-value">${weatherData.airConditions.chanceOfRain}%</p></div>
                     </div>
                 </span>
             </div>
@@ -107,50 +168,51 @@ export async function loadData(weather, tempUnit) {
             <p>WEEKLY FORECAST</p>
             <div class="daily-forecast-card-container">
                 <div class="daily-forecast-card">
-                    <img src="assets/sun.png" alt="">
+                    <img src="assets/icons/${weatherData.weeklyForecast[0].icon}.png" alt="">
                     <p class="day">Today</p>
-                    <p class="daily-temp">29&degC</p>
+                    <p class="daily-temp">${weatherData.weeklyForecast[0].temp}&deg${tempUnit}</p>
                 </div>
 
                 <div class="daily-forecast-card">
-                    <img src="assets/sun.png" alt="">
+                    <img src="assets/icons/${weatherData.weeklyForecast[1].icon}.png" alt="">
                     <p class="day">Mon</p>
-                    <p class="daily-temp">28&degC</p>                    
+                    <p class="daily-temp">${weatherData.weeklyForecast[1].temp}&deg${tempUnit}</p>                    
                 </div>
 
                 <div class="daily-forecast-card">
-                    <img src="assets/cloud.png" alt="">
+                    <img src="assets/icons/${weatherData.weeklyForecast[2].icon}.png" alt="">
                     <p class="day">Tue</p>
-                    <p class="daily-temp">25&degC</p>
+                    <p class="daily-temp">${weatherData.weeklyForecast[2].temp}&deg${tempUnit}</p>
                 </div>
 
                 <div class="daily-forecast-card">
-                    <img src="assets/rain.png" alt="">
+                    <img src="assets/icons/${weatherData.weeklyForecast[3].icon}.png" alt="">
                     <p class="day">Wed</p>
-                    <p class="daily-temp">23&degC</p>
+                    <p class="daily-temp">${weatherData.weeklyForecast[3].temp}&deg${tempUnit}</p>
                 </div>
 
                 <div class="daily-forecast-card">
-                    <img src="assets/thunder-rain.png" alt="">
+                    <img src="assets/icons/${weatherData.weeklyForecast[4].icon}.png" alt="">
                     <p class="day">Thu</p>
-                    <p class="daily-temp">22&degC</p>
+                    <p class="daily-temp">${weatherData.weeklyForecast[4].temp}&deg${tempUnit}</p>
                 </div>
 
                 <div class="daily-forecast-card">
-                    <img src="assets/cloud.png" alt="">
+                    <img src="assets/icons/${weatherData.weeklyForecast[5].icon}.png" alt="">
                     <p class="day">Fri</p>
-                    <p class="daily-temp">23&degC</p>
+                    <p class="daily-temp">${weatherData.weeklyForecast[5].temp}&deg${tempUnit}</p>
                 </div>
 
                 <div class="daily-forecast-card">
-                    <img src="assets/sun.png" alt="">
+                    <img src="assets/icons/${weatherData.weeklyForecast[6].icon}.png" alt="">
                     <p class="day">Sat</p>
-                    <p class="daily-temp">28&degC</p>
+                    <p class="daily-temp">${weatherData.weeklyForecast[6].temp}&deg${tempUnit}</p>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- 
     <div class="theme-bar">
         <button class="theme-toggle">
             
@@ -158,5 +220,6 @@ export async function loadData(weather, tempUnit) {
         </button>
         <button class="temp-unit">&degC</button>
     </div>
+    --->
     `
 }
