@@ -69,7 +69,7 @@ async function getWeatherData(location) {
 
 loadPage(getWeatherData, location, tempUnit)
     .then(() => {
-    const search = document.querySelector('#search-bar')
+        const search = document.querySelector('#search-bar')
         search.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
                 location = search.value.toLowerCase()
