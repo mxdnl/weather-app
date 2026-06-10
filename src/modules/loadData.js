@@ -1,3 +1,23 @@
+const loadingPage = `
+    <div class="main">
+        <div>
+            <div class="text-section"></div>
+        </div>
+
+        <div>
+            <div class="text-section"></div>
+            <div class="data-section"></div>
+        </div>
+
+        <div>
+            <div class="text-section"></div>
+            <div class="data-section"></div>
+        </div>
+    </div>
+`
+
+const body = document.querySelector('body')
+
 export async function updateData(getWeatherData, location, tempUnit) {
     const searchBar = document.getElementById('search-bar')
     const locationText = document.querySelector('.location')
@@ -17,6 +37,11 @@ export async function updateData(getWeatherData, location, tempUnit) {
     // Update location
     console.log(weatherData.main.region)
     locationText.textContent = weatherData.main.region
+        .split(' ')
+        .map(word => {
+            return word[0].toUpperCase() + word.slice(1)
+        })
+        .join(' ')
 
     // Update today's temperature
     console.log(weatherData.main.temp)
@@ -57,8 +82,6 @@ export async function updateData(getWeatherData, location, tempUnit) {
 }
 
 export async function loadPage(weather, location, tempUnit) {
-    const body = document.querySelector('body')
-
     console.log(location)
     console.log('fetching data...')
     const weatherData = await weather(location)
